@@ -48,13 +48,13 @@ export class AuthService {
       });
       return Promise.resolve({
         statusCode: HttpStatus.CREATED,
-        message: 'Congratulations, you are successfully registered'
-      })
+        message: 'Congratulations, you are successfully registered',
+      });
     } else {
-      throw new HttpException(
-        'This email is already taken',
-        HttpStatus.BAD_REQUEST,
-      );
+      return Promise.reject({
+        statusCode: HttpStatus.BAD_REQUEST,
+        message: 'This email is already taken',
+      });
     }
   }
 }
