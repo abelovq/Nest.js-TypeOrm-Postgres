@@ -13,7 +13,12 @@ export class UsersService {
   ) {}
 
   async findAll(): Promise<User[]> {
-    return await this.userRepository.find();
+    const data = await this.userRepository.find();
+    data.forEach((user) => {
+      delete user.password;
+      console.log('user', user);
+    });
+    return data;
   }
 
   async create(user: CreateUserDto): Promise<User> {
